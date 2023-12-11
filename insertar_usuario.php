@@ -12,7 +12,7 @@
 <body>
 
 
-    <form action="/includes/validar.php" method="POST">
+    <form action="./includes/validar.php" method="POST">
         <div class="container">
             <br>
             <br>

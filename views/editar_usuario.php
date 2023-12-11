@@ -1,11 +1,29 @@
 <?php
+require_once("../conexionbd.php");
 
-$id = $_GET['id'];
-$conexion = mysqli_connect("localhost", "root", "", "empleado_rol");
-$consulta = "SELECT * FROM empleado WHERE id_empleado = $id";
-$resultado = mysqli_query($conexion, $consulta);
-$usuario = mysqli_fetch_assoc($resultado);
+$id = isset($_GET['id']) ? $_GET['id'] : '';
 
+if (!empty($id)) {
+    $conexion = mysqli_connect("localhost", "root", "", "empleado_rol");
+
+    if (!$conexion) {
+        die("Error en la conexión: " . mysqli_connect_error());
+    }
+
+    $id = mysqli_real_escape_string($conexion, $id);
+    $consulta = "SELECT * FROM empleado WHERE id_empleado = $id";
+    $resultado = mysqli_query($conexion, $consulta);
+
+    if ($resultado) {
+        $usuario = mysqli_fetch_assoc($resultado);
+    } else {
+        die("Error al ejecutar la consulta: " . mysqli_error($conexion));
+    }
+
+    mysqli_close($conexion);
+} else {
+    die("ID de usuario no proporcionado");
+}
 ?>
 
 
