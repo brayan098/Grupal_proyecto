@@ -1,4 +1,15 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['rol'])) {
+    header('location: login.php');
+} else {
+    if ($_SESSION['rol'] != 1) {
+        header('location: login.php');
+    }
+}
+?>
+<?php
 require_once("../conexionbd.php");
 
 if (isset($_POST['accion'])) {
