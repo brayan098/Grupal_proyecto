@@ -1,94 +1,82 @@
 <?php
-require_once("../conexionbd.php");
+session_start();
 
-$id = isset($_GET['id']) ? $_GET['id'] : '';
+if (!isset($_SESSION['rol'])) {
+    header('location: login.php');
+} else {
+    if ($_SESSION['rol'] != 1) {
+        header('location: login.php');
+    }
+}
 
-if (!empty($id)) {
+if (isset($_GET['id'])) {
+    $id_empleado = $_GET['id'];
+
     $conexion = mysqli_connect("localhost", "root", "", "empleado_rol");
 
     if (!$conexion) {
         die("Error en la conexión: " . mysqli_connect_error());
     }
 
-    $id = mysqli_real_escape_string($conexion, $id);
-    $consulta = "SELECT * FROM empleado WHERE id_empleado = $id";
+    $consulta = "SELECT * FROM empleado WHERE id_empleado = '$id_empleado'";
     $resultado = mysqli_query($conexion, $consulta);
 
-    if ($resultado) {
-        $usuario = mysqli_fetch_assoc($resultado);
+    if ($resultado->num_rows > 0) {
+        $fila = mysqli_fetch_assoc($resultado);
+        $nombre_empleado = $fila['nombre_empleado'];
+        $apellido_empleado = $fila['apellido_empleado'];
+        $documento_empleado = $fila['documento_empleado'];
+        $correo_empleado = $fila['correo_empleado'];
+        $telefono_empleado = $fila['telefono_empleado'];
     } else {
-        die("Error al ejecutar la consulta: " . mysqli_error($conexion));
+        echo "No se encontró el empleado con ID: $id_empleado";
+        exit();
     }
 
     mysqli_close($conexion);
 } else {
-    die("ID de usuario no proporcionado");
+    echo "No se proporcionó un ID de empleado válido";
+    exit();
 }
 ?>
 
-
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registros</title>
-    <link rel="stylesheet" href="/css/estilos.css">
+    <title>Editar Usuario</title>
 </head>
 
 <body>
+    <h1>Editar Usuario</h1>
+    <form action="../includes/funciones.php" method="post">
+        <input type="hidden" name="accion" value="editar_registro">
+        <input type="hidden" name="id_empleado" value="<?php echo $id_empleado; ?>">
 
+        <label for="nombre_empleado">Nombre:</label>
+        <input type="text" name="nombre_empleado" value="<?php echo $nombre_empleado; ?>" required>
+        <br>
 
-    <form action="../includes/funciones.php" method="POST">
-            <div class="container">
-                <br>
-                <br>
-                <h3 class="text-center">Editar usuario</h3>
-                <div class="form-group">
-                    <label for="nombre_empleado" class="form-label">Nombre </label>
-                    <input type="text" id="nombre_empleado" name="nombre_empleado" class="form-control" value="<?php echo $usuario['nombre_empleado']; ?>" required>
-                </div>
-                <div class="form-group">
-                    <label for="apellido_empleado" class="form-label">Apellido </label>
-                    <input type="text" id="apellido_empleado" name="apellido_empleado" class="form-control" value="<?php echo $usuario['apellido_empleado']; ?>" required>
-                </div>
-                <div class="form-group">
-                    <label for="documento_empleado" class="form-label">Documento </label>
-                    <input type="text" id="documento_empleado" name="documento_empleado" class="form-control" value="<?php echo $usuario['documento_empleado']; ?>" required>
-                </div>
-                <div class="form-group">
-                    <label for="correo_empleado">Correo</label>
-                    <input type="email" name="correo_empleado" id="correo_empleado" class="form-control" placeholder="" value="<?php echo $usuario['correo_empleado']; ?>">
-                </div>
-                <div class="form-group">
-                    <label for="telefono_empleado" class="form-label">Telefono </label>
-                    <input type="tel" id="telefono_empleado" name="telefono_empleado" class="form-control" value="<?php echo $usuario['telefono_empleado']; ?>" required>
+        <label for="apellido_empleado">Apellido:</label>
+        <input type="text" name="apellido_empleado" value="<?php echo $apellido_empleado; ?>" required>
+        <br>
 
-                </div>
-                
-                <input type="hidden" name="accion" value="editar_empleado">
+        <label for="documento_empleado">Documento:</label>
+        <input type="text" name="documento_empleado" value="<?php echo $documento_empleado; ?>" required>
+        <br>
 
-                    <input type="hidden" name="id" value="<?php echo $id; ?>">
-                </div>
+        <label for="correo_empleado">Correo:</label>
+        <input type="email" name="correo_empleado" value="<?php echo $correo_empleado; ?>" required>
+        <br>
 
+        <label for="telefono_empleado">Teléfono:</label>
+        <input type="tel" name="telefono_empleado" value="<?php echo $telefono_empleado; ?>" required>
+        <br>
 
-                <br>
-
-                <div class="mb-3">
-
-                    <button type="submit" class="btn btn-success">Editar</button>
-                    <a href="../administrador.php" class="btn btn-danger">Cancelar</a>
-
-                </div>
-            </div>
-        </div>
-
-    </form>
-    </div>
-    </div>
-    
+        <input type="submit" value="Guardar cambios">
+        <a href="../administrador.php">Cancelar</a>
     </form>
 </body>
 
