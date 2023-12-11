@@ -16,7 +16,8 @@ if (!isset($_SESSION['rol'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>administrador</title>
+    <link rel="stylesheet" href="./css/estilos.css">
+    <title>Administrador</title>
     <script>
         function confirmarEliminar(id) {
             var respuesta = confirm("¿Estás seguro de que deseas eliminar este usuario?");
@@ -29,29 +30,26 @@ if (!isset($_SESSION['rol'])) {
 
 <body>
 
-    <div class="container is-fluid">
+    <div class="container">
         <br>
-        <div class="col-xs-12">
+
+        <div class="col">
             <h1>Lista de usuarios</h1>
-            <br>
-            <div>
-                <a class="btn btn-success" href="insertar_usuario.php">Nuevo usuario</a>
-            </div>
-            <br>
-
-            <br>
-
-            <table class="table">
+            <table class="tabla">
                 <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>Documento</th>
-                        <th>Correo</th>
-                        <th>Telefono</th>
-                        <th>Acciones</th>
-                    </tr>
+                    <div class="buscador">
+                        <input type="text" id="searchInput" placeholder="Buscar por nombres o apellidos" autofocus>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Documento</th>
+                            <th>Correo</th>
+                            <th>Telefono</th>
+                            <th>Acciones</th>
+
+                        </tr>
                 </thead>
+
                 <tbody>
                     <?php
                     $conexion = mysqli_connect("localhost", "root", "", "empleado_rol");
@@ -68,23 +66,57 @@ if (!isset($_SESSION['rol'])) {
                                 <td><?php echo $fila['correo_empleado']; ?></td>
                                 <td><?php echo $fila['telefono_empleado']; ?></td>
                                 <td>
-                                    <a class="btn-warning" href="./views/editar_usuario.php?id=<?php echo $fila['id_empleado'] ?>">Editar</a>
-                                    <a class="btn-danger" href="javascript:void(0);" onclick="confirmarEliminar(<?php echo $fila['id_empleado']; ?>)">Eliminar</a>
+                                    <a class="boton-editar" href="./views/editar_usuario.php?id=<?php echo $fila['id_empleado'] ?>">Editar</a>
+                                    <a class="boton-eliminar" href="javascript:void(0);" onclick="confirmarEliminar(<?php echo $fila['id_empleado']; ?>)">Eliminar</a>
+
                                 </td>
+
                             </tr>
-                    <?php
+
+                        <?php
                         }
                     } else {
-                    ?>
+                        ?>
                         <tr class="text-center">
                             <td colspan="6">No existen registros</td>
                         </tr>
                     <?php
                     }
                     ?>
+
                 </tbody>
+                <script>
+                    document.addEventListener("DOMContentLoaded", function() {
+                        const searchInput = document.getElementById("searchInput");
+                        const tableRows = document.querySelectorAll("table tbody tr");
+
+                        searchInput.addEventListener("input", function() {
+                            const searchTerm = searchInput.value.trim().toLowerCase();
+
+                            tableRows.forEach(row => {
+                                const columns = row.querySelectorAll("td");
+                                let shouldDisplay = false;
+
+                                columns.forEach(column => {
+                                    const cellText = column.textContent.toLowerCase();
+                                    if (cellText.includes(searchTerm)) {
+                                        shouldDisplay = true;
+                                    }
+                                });
+
+                                row.style.display = shouldDisplay ? "" : "none";
+                            });
+                        });
+                    });
+                </script>
+ 
             </table>
         </div>
+        <div>
+            <a class="boton-insertar" href="insertar_usuario.php">Nuevo usuario</a>
+            <a href="cerrar_sesion.php" class="boton-cerrar-sesion">Cerrar Sesión</a>
+        </div>
+    </div>
     </div>
 </body>
 

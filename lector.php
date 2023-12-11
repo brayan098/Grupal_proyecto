@@ -14,14 +14,15 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/estilos.css">
     <title>lector</title>
 </head>
 <body>
 
 
-<div class="container is-fluid">
+<div class="container">
     <br>
-    <div class="col-xs-12">
+    <div class="col">
         <h1>Lista de usuarios</h1>
         <br>
         
@@ -29,7 +30,7 @@ session_start();
 
         <br>
 
-        <table class="table">
+        <table class="tabla">
             <thead>
                 <tr>
                     <th>Nombre</th>
@@ -67,7 +68,10 @@ session_start();
                 }
                 ?>
             </tbody>
+            
         </table>
+        <br><br>
+        <a href="cerrar_sesion.php" class="boton-cerrar-sesion">Cerrar Sesión</a>
     </div>
 </div>
 </body>

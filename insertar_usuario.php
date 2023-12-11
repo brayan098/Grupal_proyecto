@@ -6,19 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registros</title>
-    <link rel="stylesheet" href="/css/estilos.css">
+    <link rel="stylesheet" href="./css/estilos.css?ver=1.2">
 </head>
 
 <body>
 
 
     <form action="./includes/validar.php" method="POST">
-        <div class="container">
+        <div class="container-insert">
             <br>
             <br>
             <h3 class="text-center">Registro de nuevo usuario</h3>
             <div class="form-group">
-                <label for="nombre_empleado" class="form-label">Nombre</label>
+                <label for="nombre_empleado">Nombre</label>
                 <input type="text" id="nombre_empleado" name="nombre_empleado" class="form-control" required autofocus> 
             </div>
             <div class="form-group">
@@ -34,7 +34,7 @@
                 <input type="email" name="correo_empleado" id="correo_empleado" class="form-control" required>
             </div>
             <div class="form-group">
-                <label for="telefono_empleado" class="form-label">Telefono</label>
+                <label for="telefono_empleado">Telefono</label>
                 <input type="text" id="telefono_empleado" name="telefono_empleado" class="form-control" required>
 
             <input type="hidden" name="accion" value="editar_empleado">
@@ -44,10 +44,10 @@
 
         <br>
 
-        <div class="mb-3">
+        <div class="seccion_btn">
 
-            <input type="submit" value="Guardar" class="btn btn-success" name="registrar">
-            <a href="administrador.php" class="btn btn-danger">Cancelar</a>
+            <input type="submit" value="Guardar" class="boton-registrar" name="registrar">
+            <a href="administrador.php" class="boton-cancelar">Cancelar</a>
 
         </div>
         </div>

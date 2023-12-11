@@ -1,0 +1,241 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.col {
+    margin-bottom: 20px;
+}
+
+.titulo {
+    color: #333;
+}
+
+.tabla {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.tabla th,
+.tabla td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.tabla th {
+    background-color: #f2f2f2;
+}
+
+.boton-editar,
+.boton-eliminar,
+.boton-insertar {
+    display: inline-block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.boton-editar {
+    background-color: #3498db;
+}
+
+.boton-eliminar {
+    background-color: #e74c3c;
+}
+
+.boton-insertar {
+    background-color: #27ae60;
+}
+
+.text-center {
+    text-align: center;
+}
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container-in {
+    max-width: 600px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.titulo {
+    color: #333;
+    text-align: center;
+}
+
+.edit-form {
+    margin-top: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border-bottom: none;
+}
+.btn-success:hover{
+    background-color: #0d6431;
+}
+
+.btn-cancel {
+    background-color: #dc3545;
+}
+.btn-cancel:hover {
+    background-color: #771d26;
+}
+.form-buttons {
+    text-align: center;
+    margin-top: 15px;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container-insert {
+    max-width: 600px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.text-center {
+    text-align: center;
+
+}
+h3 {
+    font-size: 30px; 
+    margin-bottom: 20px;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.seccion_btn {
+    text-align: center;
+    margin-top: 15px;
+}
+
+
+.boton-cancelar {
+    display: inline-block;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+
+
+.boton-cancelar {
+    background-color: #dc3545;
+}
+
+.boton:hover {
+    background-color: #555;
+}
+input[type="submit"] {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+input[type="submit"]:hover {
+    background-color: #246828;
+}
+
+.boton-cerrar-sesion {
+    display: inline-block;
+    padding: 12.1px 20px;
+    font-size: 14px;
+    text-decoration: none;
+    background-color: #e74c3c;
+    color: #fff;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.boton-cerrar-sesion:hover {
+    background-color: #c0392b;
+}
+.buscador {
+    margin-bottom: 20px;
+    text-align: center;
+    display: inline-block;
+}
+
+#searchInput {
+    padding: 8px;
+    width: 783px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+}
