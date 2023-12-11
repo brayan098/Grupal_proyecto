@@ -14,81 +14,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administrador</title>
-    <link rel="stylesheet" href="estilos/estilos.css">
+    <title>administrador</title>
 </head>
 <body>
-    <header>
-        <nav>
-            <p>Tabla de Empleados</p>
-            <center>
-    <div class="buscador">
-        <input type="text" id="searchInput" placeholder="Buscar por nombres o apellidos" autofocus>
-        </center>
-        </nav>
-        <br><br>
-    </header>
-    <section>
-       
-        <div class="contenedor">
-            <div class="tabla">
-                <table width="80%" align="center" border="1">
-                    <tr>
-                        <th>ID empleado</th>
-                        <th>Nombre</th>
-                        <th>Apellidos</th>
-                        <th>Documento</th>
-                        <th>Correo</th>
-                        <th>Teléfono</th>
-                        
-                     
-                    </tr>
-                    <?php
-                    for ($i = 0; $i < sizeof($cls2); $i++) {
-                    ?>
-                    <tr>
-                        <td><?php echo $cls2[$i]["id_empleado"];?></td>
-                        <td><?php echo $cls2[$i]["documento_empleado"];?></td>
-                        <td><?php echo $cls2[$i]["nombre_empleado"];?></td>
-                        <td><?php echo $cls2[$i]["apellido_empleado"];?></td>
-                        <td><?php echo $cls2[$i]["telefono_empleado"];?></td>
-                        <td><?php echo $cls2[$i]["correo_empleado"];?></td>
-                        <td>
-                            <a href="editar_usuario.php?id=<?php echo $cls2[$i]["id_empleado"]; ?>" class="edit-button">Editar</a>
-                        
-                            <form action="borrar_usuario.php" method="POST" onsubmit="return confirm('¿Está seguro que quiere borrar este registro?');">
-                                <input type="hidden" name="id" value="<?php echo $cls2[$i]["id_empleado"]; ?>">
-                                <button type="submit" class="delete-button">Borrar</button>
-                            </form>
-                        </td>
-                    </tr>
-                    <?php
-                    }
-                    ?>
-                </table>
-            </div>
-        </div>
-        <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const searchInput = document.getElementById("searchInput");
-            const tableRows = document.querySelectorAll("table tr:not(:first-child)");
+</head>
 
-            searchInput.addEventListener("input", function() {
-                const searchTerm = searchInput.value.trim().toLowerCase();
+<div class="container is-fluid">
 
-                tableRows.forEach(row => {
-                    const names = row.querySelector("td:nth-child(4)").textContent.toLowerCase();
-                    const lastNames = row.querySelector("td:nth-child(5)").textContent.toLowerCase();
-                    const shouldDisplay = names.includes(searchTerm) || lastNames.includes(searchTerm);
 
-                    row.style.display = shouldDisplay ? "" : "none";
-                });
-            });
-        });
-    </script>
-    </section>
-    <footer>
-        <a href="insertar_usuario.php" class="boton">Insertar usuarios</a>
-    </footer>
-</body>
+
+  <br>
+  <div class="col-xs-12">
+    <h1>Lista de usuarios</h1>
+    <br>
+    <div>
+      <a class="btn btn-success" href="insertar_usuario.php">Nuevo usuario
+      </a>
+    </div>
+    <br>
+
+
+
+
+    <br>
+
+
+    </form>
+
+
+
+    <table class="table">
+
+
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Documento</th>
+          <th>Correo</th>
+          <th>Telefono</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <?php
+
+        $conexion = mysqli_connect("localhost", "root", "", "empleado_rol");
+        $SQL = "SELECT *FROM empleado ";
+        $dato = mysqli_query($conexion, $SQL);
+
+        if ($dato->num_rows > 0) {
+          while ($fila = mysqli_fetch_array($dato)) {
+
+        ?>
+            <tr>
+              <td><?php echo $fila['nombre_empleado']; ?></td>
+              <td><?php echo $fila['apellido_empleado']; ?></td>
+              <td><?php echo $fila['documento_empleado']; ?></td>
+              <td><?php echo $fila['correo_empleado']; ?></td>
+              <td><?php echo $fila['telefono_empleado']; ?></td>
+              <td>
+                <a class="btn-warning" href="./views/editar_usuario.php?id=<?php echo $fila['id_empleado'] ?> ">
+                  Editar </a>
+
+                <a class="btn-danger" href="./views/eliminar_usuario.php?id=<?php echo $fila['id_empleado'] ?>">
+                  Eliminar</a>
+
+              </td>
+            </tr>
+
+
+          <?php
+          }
+        } else {
+
+          ?>
+          <tr class="text-center">
+            <td colspan="16">No existen registros</td>
+          </tr>
+
+
+        <?php
+
+        }
+
+        ?>
+
+        </body>
+    </table>
+
 </html>
