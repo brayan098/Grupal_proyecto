@@ -20,7 +20,7 @@
 <body>
     <header>
         <nav>
-            <p>Tabla de Usuarios</p>
+            <p>Tabla de Empleados</p>
             <center>
     <div class="buscador">
         <input type="text" id="searchInput" placeholder="Buscar por nombres o apellidos" autofocus>
