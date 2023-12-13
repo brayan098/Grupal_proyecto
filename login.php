@@ -69,7 +69,7 @@
         </div>
 
         <div class="form_c">
-        <label>password:</label>
+        <label>Contraseña:</label>
         <input type="password" name="password" required>
         </div>
         <div class="boton">
